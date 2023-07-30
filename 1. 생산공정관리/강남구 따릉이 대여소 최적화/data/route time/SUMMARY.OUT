@@ -1,0 +1,18 @@
+Fit All
+
+Document:  C:\Users\sjkan\Desktop\연세\22-2\시뮬레이션\팀프로젝트\input data\2339 to 2301.csv
+Data File: C:\Users\sjkan\Desktop\연세\22-2\시뮬레이션\팀프로젝트\input data\2339 to 2301.csv
+
+
+Function       Sq Error
+-----------------------
+Beta           0.101
+Uniform        0.152
+Gamma          0.153
+Weibull        0.156
+Exponential    0.156
+Erlang         0.156
+Normal         0.157
+Lognormal      0.159
+Triangular     0.164
+Poisson        0.191
