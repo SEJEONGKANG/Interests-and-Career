@@ -1,0 +1,7 @@
+npm install --legacy-peer-deps
+npm install pdfjs-dist --legacy-peer-deps
+npm install react-pdf --legacy-peer-deps
+npm install react-router-dom --legacy-peer-deps
+npm install @material-ui/core --legacy-peer-deps
+npm install axios --legacy-peer-deps
+npm install file-loader --legacy-peer-deps
