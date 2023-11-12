@@ -1,0 +1,15 @@
+{
+  "short_name": "Live Audit Information",
+  "name": "Track corporations' current auditors",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

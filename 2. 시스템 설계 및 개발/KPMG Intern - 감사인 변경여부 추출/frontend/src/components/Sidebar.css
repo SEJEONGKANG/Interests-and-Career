@@ -1,0 +1,26 @@
+.sidebar {
+    width: 200px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.username {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.bars {
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.bar {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}

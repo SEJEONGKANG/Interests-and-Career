@@ -1,0 +1,40 @@
+.mainContextStyle {
+  display: flex;
+  width: 100%;
+  padding: 14px;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  flex: 1 0 0;
+  background: #dedede;
+  min-height: 80vh;
+}
+
+.mainPageStyle {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  flex: 1 0 0;
+  background: #dedede;
+  min-height: 98vh;
+}
+
+.outerLayoutStyle {
+  display: flex;
+  width: 518.39px;
+  padding-bottom: 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4.8px;
+}
+
+.innerLayoutStyle {
+  display: flex;
+  width: 300px;
+  padding: 8.81px 0px 10.19px 15px;
+  align-items: center;
+  border: 1px solid #999;
+  background: #fff;
+}

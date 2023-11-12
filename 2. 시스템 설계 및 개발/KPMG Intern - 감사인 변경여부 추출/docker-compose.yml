@@ -1,0 +1,96 @@
+version: "3.8"
+
+# ====================================== AIRFLOW ENVIRONMENT VARIABLES =======================================
+x-environment: &airflow_environment
+  - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+  - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+  - AIRFLOW__CORE__LOAD_EXAMPLES=False
+  - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://airflow:airflow@postgres:5432/airflow
+  - AIRFLOW__CORE__STORE_DAG_CODE=True
+  - AIRFLOW__CORE__STORE_SERIALIZED_DAGS=True
+  - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
+
+x-airflow-image: &airflow_image sr_airflow_image:latest
+# ====================================== /AIRFLOW ENVIRONMENT VARIABLES ======================================
+services:
+  frontend:
+    container_name: Frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+
+  backend:
+    container_name: FastAPI
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql_db
+    restart: always
+
+  mysql_db:
+    container_name: MySQL
+    image: mysql:8.0.34
+    ports:
+      - "3306:3306"
+    env_file: ./db/.env
+    environment:
+      TZ: Asia/Seoul
+    restart: always
+    volumes:
+      - ./db/logs:/logs
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  postgres:
+    container_name: airflow_Postgres
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    ports:
+      - "5432:5432"
+
+  airflow_init:
+    container_name: airflow_init
+    image: *airflow_image
+    build:
+      context: ./batch
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    environment: *airflow_environment
+    entrypoint: /bin/bash
+    command: -c 'airflow db init && airflow users create --username admin --password admin --firstname Anonymous --lastname Admin --role Admin --email admin@example.org'
+
+  webserver:
+    container_name: airflow_webserver
+    image: *airflow_image
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - logs:/opt/airflow/logs
+    environment: *airflow_environment
+    command: webserver
+
+  scheduler:
+    container_name: airflow_scheduler
+    image: *airflow_image
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - logs:/opt/airflow/logs
+      - ./batch/dags:/opt/airflow/dags
+    environment: *airflow_environment
+    command: scheduler
+
+volumes:
+  logs:
