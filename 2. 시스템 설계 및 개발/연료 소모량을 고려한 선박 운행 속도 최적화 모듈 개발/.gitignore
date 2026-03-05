@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+
+# inference 결과 이미지 무시
+app/static/infer/*.png
+!app/static/infer/sample_main.png
+!app/static/infer/sample_results.png
+
+# results 폴더의 periodic checkpoint는 무시 (best/final은 추적)
+results/*_ckpt.pt
