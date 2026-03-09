@@ -1,0 +1,13 @@
+[알고리즘 구조 및 기술적 구현 방식]
+
+- 알고리즘 구조:
+  • Rule-based 휴리스틱 기반
+  • Constraint Programming (제약 충족 방식)
+  • MILP (Mixed Integer Linear Programming) 기반 최적화
+
+- MSS 엔진 처리 순서:
+  LOT 큐 → 제약 조건 필터링 → 우선순위 스코어링 → 장비 매칭 → 시간 슬롯 할당
+
+- 재스케줄링:
+  • 기존 결과는 보존
+  • Partial Rescheduling 방식으로 부분 재계산 수행

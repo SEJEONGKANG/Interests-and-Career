@@ -1,0 +1,16 @@
+equipment_id,equipment_type,min_required_wip
+E100,Etching,3
+E101,Inspection,3
+E102,IonImplantation,4
+E103,IonImplantation,2
+E104,Inspection,3
+E105,Metallization,5
+E106,IonImplantation,2
+E107,IonImplantation,4
+E108,IonImplantation,4
+E109,Deposition,4
+E110,Photolithography,2
+E111,Packaging,2
+E112,Photolithography,5
+E113,Oxidation,3
+E114,Etching,3
